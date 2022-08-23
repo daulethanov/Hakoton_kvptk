@@ -1,8 +1,13 @@
+from django.contrib.auth.models import Group
+
+from .models import *
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic import ListView
 from .forms import *
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 
@@ -36,3 +41,16 @@ def register(request):
 
 class MyLogoutView(LogoutView):
     new_page = reverse_lazy('home')
+
+
+class Groups(ListView):
+    # model = Category_groups
+    queryset = Group.objects.all()
+    template_name = 'groups.html'
+    context_object_name = 'groups_list'
+
+
+def users(request):
+
+    context = {'users': UserAbstract.objects.all()}
+    return render(request, 'groups.html', context)

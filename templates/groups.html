@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+{# вывод группы одного юзера #}
+<td>{{ user.username }}</td>
+    {% for group in user.groups.all %}
+{{ group.name }}
+{% endfor %}
+{#вывод всех групп #}
+    {% for group in groups_list.all %}
+{{ group.name }}
+{% endfor %}
+
+
+{% endblock %}
